@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoomWeave</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Landing Page View -->
+        <div class="landing-page" id="landingPage">
+            <div class="header-logo">
+                <i class="fas fa-comments"></i>
+                <h1>RoomWeave</h1>
+                <p>Connect with others in real-time chat rooms</p>
+            </div>
+
+            <div class="card join-room-card">
+                <h3>Join a Room</h3>
+                <div class="input-group">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="usernameInput" placeholder="Enter your username">
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-hashtag"></i>
+                    <input type="text" id="roomInput" placeholder="Enter room name">
+                </div>
+                <button id="joinRoomButton" class="primary-button">Join Room</button>
+            </div>
+
+            <div class="card popular-rooms-card">
+                <h3>Popular Rooms</h3>
+                <div class="tags-container">
+                    <span class="room-tag" data-room="general">#general</span>
+                    <span class="room-tag" data-room="random">#random</span>
+                    <span class="room-tag" data-room="tech">#tech</span>
+                    <span class="room-tag" data-room="gaming">#gaming</span>
+                    <span class="room-tag" data-room="music">#music</span>
+                </div>
+            </div>
+
+            <div class="features-section">
+                <div class="feature-item">
+                    <i class="fas fa-comments"></i>
+                    <h4>Real-time Chat</h4>
+                    <p>Instant messaging with WebSocket technology</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-users"></i>
+                    <h4>Multiple Rooms</h4>
+                    <p>Create or join different chat rooms</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Room View -->
+        <div class="chat-room" id="chatRoom" style="display: none;">
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <span id="currentRoomDisplay">#random</span>
+                    <button id="leaveRoomButton" class="leave-button">Leave</button>
+                </div>
+                <div class="sidebar-section">
+                    <h4><i class="fas fa-users"></i> <span>1 member</span></h4>
+                    <ul id="memberList" class="member-list">
+                        <li class="current-user"><i class="fas fa-circle online-status"></i> <span id="currentUserDisplay">het (you)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main-chat">
+                <div class="chat-messages" id="messages">
+                    <!-- Messages will be displayed here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="messageInput" placeholder="Message #random..." disabled>
+                    <button id="sendButton" disabled><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="static/script.js"></script>
+</body>
+</html>
