@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomWeave</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{fontFamily:{inter:['Inter','ui-sans-serif','system-ui']}}}}</script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="app-container">
+    <div class="app-container font-inter bg-gray-50">
         <!-- Landing Page View -->
         <div class="landing-page" id="landingPage">
             <div class="header-logo">
@@ -62,29 +64,40 @@
 
         <!-- Chat Room View -->
         <div class="chat-room" id="chatRoom" style="display: none;">
-            <div class="sidebar">
+            <button id="sidebarToggle" class="sidebar-toggle hidden md:!hidden" title="Toggle members">
+                <i class="fas fa-users"></i>
+            </button>
+            <div class="sidebar bg-white/90 backdrop-blur border-r border-gray-200 shadow-sm">
                 <div class="sidebar-header">
-                    <span id="currentRoomDisplay">#random</span>
-                    <button id="leaveRoomButton" class="leave-button">Leave</button>
+                    <span id="currentRoomDisplay" class="bg-gradient-to-r from-indigo-500 to-cyan-500 bg-clip-text text-transparent font-semibold">#random</span>
+                    <button id="leaveRoomButton" class="leave-button rounded-full px-4 py-2 bg-red-100 text-red-600 hover:bg-red-200 transition">Leave</button>
                 </div>
                 <div class="sidebar-section">
-                    <h4><i class="fas fa-users"></i> <span>1 member</span></h4>
-                    <ul id="memberList" class="member-list">
-                        <li class="current-user"><i class="fas fa-circle online-status"></i> <span id="currentUserDisplay">het (you)</span></li>
-                    </ul>
+                    <h4 class="text-gray-500 text-sm font-medium"><i class="fas fa-users mr-2"></i> <span>Members</span></h4>
+                    <ul id="memberList" class="member-list space-y-1"></ul>
                 </div>
             </div>
             <div class="main-chat">
                 <div class="chat-messages" id="messages">
                     <!-- Messages will be displayed here -->
                 </div>
+                <div id="typingIndicator" class="typing-indicator" style="display:none;">Someone is typing...</div>
                 <div class="chat-input">
-                    <input type="text" id="messageInput" placeholder="Message #random..." disabled>
-                    <button id="sendButton" disabled><i class="fas fa-paper-plane"></i></button>
+                    <button id="emojiToggle" class="icon-button h-11 w-11 rounded-full bg-white text-indigo-600 shadow hover:scale-105 transition disabled:opacity-50 flex items-center justify-center" title="Emoji" disabled><i class="far fa-face-smile"></i></button>
+                    <textarea id="messageInput" class="flex-1 rounded-xl shadow border border-gray-200 focus:ring-2 focus:ring-indigo-300 focus:border-indigo-400 transition px-3 py-2" placeholder="Message #random..." rows="1" disabled></textarea>
+                    <button id="sendButton" class="h-11 w-11 rounded-full bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow hover:scale-105 transition disabled:opacity-50 flex items-center justify-center" disabled><i class="fas fa-paper-plane"></i></button>
                 </div>
+                <div id="emojiPanel" class="emoji-panel" style="display:none;"></div>
+                <button id="scrollBottom" class="scroll-bottom" title="Scroll to latest" style="display:none;">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <audio id="dingSound" preload="auto">
+                    <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3" type="audio/mpeg" />
+                </audio>
             </div>
         </div>
     </div>
+    <div id="toastContainer" class="toast-container"></div>
     <script src="static/script.js"></script>
 </body>
 </html>
